@@ -1,0 +1,133 @@
+﻿<Page x:Class="NBA_2hour.Pages.Photos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBA_2hour.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Photos"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="When you like a photo, you can right-click a photo and choose the download menu item in the context menu to download."
+                   FontSize="20"
+                   Margin="10,10,0,10"
+                   Foreground="gray"
+                   FontFamily="Verdana"
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap"
+                   x:Name="TBWelcome"
+                   TextAlignment="Center" />
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,10,0">
+            <Button x:Name="BFirstPage"
+                    Content="|&#60;"
+                    Click="BFirstPage_Click"
+                    Style="{DynamicResource RoundButton}"
+                    Foreground="Gray"
+                    Margin="0,5,0,5"
+                    Width="50"
+                    FontFamily="Verdana"
+                    FontSize="20"/>
+            <Button x:Name="BPrevious"
+                    Click="BPrevious_Click"
+                    Content="&#60;"
+                    DockPanel.Dock="Left"
+                    Width="50"
+                    Margin="5,5,10,5"
+                    Style="{DynamicResource RoundButton}"
+                    FontFamily="Verdana"
+                    FontSize="20"
+                    Foreground="Gray" />
+            <TextBox x:Name="TBPage"
+                     Width="55"
+                     Height="40"
+                     BorderThickness="2"
+                     BorderBrush="#707070"
+                     MaxLength="3"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     FontFamily="Verdana"
+                     FontSize="20"
+                     Foreground="Gray" 
+                     Margin="0,5,0,5"
+                     TextInput="TBPage_TextInput"
+                     TextChanged="TBPage_TextChanged"/>
+            <Button x:Name="BNext"
+                    Click="BNext_Click"
+                    Content="&#62;"
+                    DockPanel.Dock="Right"
+                    Margin="10,5,5,5"
+                    Style="{DynamicResource RoundButton}"
+                    FontFamily="Verdana"
+                    FontSize="20"
+                    Width="50"
+                    Foreground="Gray" />
+            <Button x:Name="BLastPage"
+                    Content="&#62;|"
+                    Click="BLastPage_Click"
+                    FontFamily="Verdana"
+                    Style="{DynamicResource RoundButton}"
+                    Foreground="Gray"
+                    FontSize="20"
+                    Margin="0,5,0,5"
+                    Width="50"/>
+            <Button x:Name="BLoadPhoto"
+                    Content="Load Photo"
+                    Width="130"
+                    Margin="10,5,0,5"
+                    HorizontalContentAlignment="Center"
+                    Click="BLoadPhoto_Click"
+                    FontSize="20"
+                    Foreground="Gray"
+                    Style="{DynamicResource RoundButton}"/>
+        </StackPanel>
+        <ListView x:Name="LVPhotos"
+                  d:ItemsSource="{d:SampleData ItemCount=12}"
+                  Grid.Row="1"
+                  Margin="10"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Click="MenuItem_Click">
+                        <MenuItem.Header>
+                            <TextBlock Text="Download" 
+                                       FontSize="14"
+                                       FontFamily="Verdana"/>
+                        </MenuItem.Header>
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/download.png"
+                                   RenderOptions.BitmapScalingMode="Fant"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Img}" 
+                           Width="450"
+                           Height="230"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Stretch="Fill"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+    </Grid>
+</Page>

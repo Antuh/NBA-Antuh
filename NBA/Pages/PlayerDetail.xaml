@@ -1,0 +1,358 @@
+﻿<Page x:Class="NBA_2hour.Pages.PlayerDetail"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:winForms="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+      xmlns:local="clr-namespace:NBA_2hour.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="PlayerDetail"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Image Source="/Resources/person.png"
+                   Height="120"
+                   Margin="10"
+                   HorizontalAlignment="Left"
+                   RenderOptions.BitmapScalingMode="Fant" />
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding Player.Name}"
+                           FontSize="20"
+                           FontFamily="Verdana"
+                           Foreground="#474747" />
+                <Separator Background="Black" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0">
+                    <TextBlock Text="{Binding ShirtNumber, StringFormat='#{0}'}"
+                               FontSize="16"
+                               FontFamily="Verdana"
+                               Foreground="#474747" />
+                    <TextBlock Text="|"
+                               FontSize="18"
+                               Foreground="Black"
+                               FontFamily="Verdana"
+                               Margin="10,0,10,0" />
+                    <TextBlock Text="{Binding Player.Height}"
+                               FontSize="16"
+                               FontFamily="Verdana"
+                               Foreground="#474747" />
+                    <TextBlock Text="|"
+                               FontSize="18"
+                               Foreground="Black"
+                               FontFamily="Verdana"
+                               Margin="10,0,10,0" />
+                    <TextBlock Text="{Binding Team.TeamName}"
+                               FontSize="16"
+                               FontFamily="Verdana"
+                               Foreground="#474747" />
+                </StackPanel>
+                <Grid Margin="0,10,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Born"
+                               FontSize="16"
+                               FontFamily="Verdana"
+                               Foreground="Gray" />
+                    <TextBlock Text="{Binding Player.DateOfBirth, StringFormat='yyyy-MM-dd'}"
+                               FontSize="16"
+                               FontFamily="Verdana"
+                               Grid.Column="1"
+                               Foreground="#474747" />
+                    <TextBlock Text="Experience"
+                               FontSize="16"
+                               Grid.Column="2"
+                               FontFamily="Verdana"
+                               Foreground="Gray" />
+                    <TextBlock Text="{Binding Player.ExperienseInNBA}"
+                               FontSize="16"
+                               Grid.Column="3"
+                               FontFamily="Verdana"
+                               Foreground="#474747" />
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="College"
+                               FontSize="16"
+                               FontFamily="Verdana"
+                               Foreground="Gray" />
+                    <TextBlock Text="{Binding Player.College}"
+                               FontSize="16"
+                               Grid.Column="1"
+                               FontFamily="Verdana"
+                               Foreground="Gray" />
+                    <TextBlock Text="Salary"
+                               FontSize="16"
+                               FontFamily="Verdana"
+                               Grid.Column="2"
+                               Foreground="Gray" />
+                    <TextBlock Text="{Binding Salary}"
+                               FontSize="16"
+                               FontFamily="Verdana"
+                               Grid.Column="3"
+                               Foreground="Gray" />
+                </Grid>
+            </StackPanel>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="2016-2017 Season"
+                           FontSize="16"
+                           Foreground="#474747"
+                           FontFamily="Verdana"
+                           HorizontalAlignment="Left"
+                           Margin="10" />
+                <TextBlock Text="Career"
+                           FontSize="16"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           Foreground="#474747"
+                           FontFamily="Verdana"
+                           HorizontalAlignment="Left"
+                           Margin="10" />
+                <StackPanel Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="PPG:"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                        <TextBlock x:Name="TBPPGinSeason"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="PPG:"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                        <TextBlock x:Name="TBAPGinSeason"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="RPG:"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                        <TextBlock x:Name="TBRPGinSeason"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="1"
+                            Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="PPG:"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                        <TextBlock x:Name="TBPPGinCareer"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="PPG:"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                        <TextBlock x:Name="TBAPGinCareer"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="RPG:"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                        <TextBlock x:Name="TBRPGinCareer"
+                                   FontSize="16"
+                                   Grid.Row="2"
+                                   Foreground="#474747"
+                                   FontFamily="Verdana"
+                                   HorizontalAlignment="Left"
+                                   Margin="10" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Top">
+                <TextBlock Text="Date"
+                           FontSize="16"
+                           Foreground="Gray"
+                           FontFamily="Verdana"
+                           Margin="10" />
+                <DatePicker Height="30"
+                            x:Name="DPStartDate" />
+                <TextBlock Text="-"
+                           FontSize="16"
+                           Foreground="Gray"
+                           FontFamily="Verdana"
+                           Margin="10" />
+                <DatePicker Height="30"
+                            x:Name="DPEndDate" />
+                <Button x:Name="BSearch"
+                        Content="Search"
+                        Background="White"
+                        Foreground="Black"
+                        FontFamily="Verdana"
+                        FontSize="16"
+                        Height="30"
+                        Width="75"
+                        Click="BSearch_Click"
+                        Margin="10,0,0,0"
+                        BorderBrush="Black"
+                        Style="{DynamicResource  RoundButton}" />
+            </StackPanel>
+            <TabControl Grid.Row="2">
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Preseason"
+                                   Foreground="Gray"
+                                   FontFamily="Verdana"
+                                   FontSize="20"
+                                   Width="170"
+                                   TextAlignment="Center" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <WindowsFormsHost>
+                            <winForms:Chart x:Name="ChartPoints" />
+                        </WindowsFormsHost>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Rebounds"
+                                   Foreground="Gray"
+                                   FontFamily="Verdana"
+                                   FontSize="20"
+                                   Width="170"
+                                   TextAlignment="Center" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <WindowsFormsHost>
+                            <winForms:Chart x:Name="ChartRebounds" />
+                        </WindowsFormsHost>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Assists"
+                                   Foreground="Gray"
+                                   FontFamily="Verdana"
+                                   FontSize="20"
+                                   Width="170"
+                                   TextAlignment="Center" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <WindowsFormsHost>
+                            <winForms:Chart x:Name="ChartAssists" />
+                        </WindowsFormsHost>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Steals"
+                                   Foreground="Gray"
+                                   FontFamily="Verdana"
+                                   FontSize="20"
+                                   Width="170"
+                                   TextAlignment="Center" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <WindowsFormsHost>
+                            <winForms:Chart x:Name="ChartSteals" />
+                        </WindowsFormsHost>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Blocks"
+                                   Foreground="Gray"
+                                   FontFamily="Verdana"
+                                   FontSize="20"
+                                   Width="170"
+                                   TextAlignment="Center" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <WindowsFormsHost>
+                            <winForms:Chart x:Name="ChartBlocks" />
+                        </WindowsFormsHost>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Page>
